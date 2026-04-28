@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <!-- Load the reCAPTCHA API with your Site Key -->
-<script src="https://google.com" async defer></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 
 
@@ -25,6 +25,10 @@
 </a>
 
 
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+
   <div class="nav-links">
     <a class="nav-link" href="#how">How it works</a>
     <a class="nav-link" href="#features">Features</a>
@@ -37,6 +41,15 @@
     <a class="nav-cta" href="#pricing">Get Started</a>
   </div>
 </nav>
+
+<!-- ── MOBILE NAV MENU ── -->
+<div class="mobile-nav" id="mobile-nav">
+  <a href="#how">How it works</a>
+  <a href="#features">Features</a>
+  <a href="#niches">Industries</a>
+  <a href="#pricing">Pricing</a>
+  <a class="mobile-nav-cta" href="#pricing">Get Started</a>
+</div>
 
 <!-- ── HERO ── -->
 <section id="hero">
@@ -386,7 +399,6 @@
         <a href="https://appointly.software">appointly.software</a>
       </div>
       <script src="script.js"></script>
- <div class="g-recaptcha" data-sitekey="6LcbQc0sAAAAAKO4gYrvcT90hlN4DsldhUlKfrGy"></div>
       
     </div>
     <div class="footer-bottom">
@@ -408,12 +420,27 @@
         <p>Please verify you are human to continue.</p>
         
         <form id="contact-form">
-            <div class="g-recaptcha" data-sitekey="6LcbQc0sAAAAAKO4gYrvcT90hlN4DsldhUlKfrGy"></div>
+            <div class="g-recaptcha" data-sitekey="6LcbQc0sAAAAAKO4gYrvcT90hlN4DsldhUlKfrGy" data-callback="onCaptchaSuccess" data-expired-callback="onCaptchaExpired"></div>
             <button type="submit" class="submit-btn">Submit</button>
         </form>
     </div>
 </div>
 
 
+<script>
+  const hamburger = document.getElementById('nav-hamburger');
+  const mobileNav = document.getElementById('mobile-nav');
+  hamburger.addEventListener('click', function() {
+    hamburger.classList.toggle('open');
+    mobileNav.classList.toggle('open');
+  });
+  // Close menu when a link is tapped
+  mobileNav.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      hamburger.classList.remove('open');
+      mobileNav.classList.remove('open');
+    });
+  });
+</script>
 </body>
 </html>
