@@ -9,8 +9,6 @@
 <link rel="stylesheet" href="styles.css">
 <link rel="icon" type="image/png" href="Pictures/Appintly%20Calander%20logo.png">
 </head>
-<!-- Load the reCAPTCHA API with your Site Key -->
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 
 
@@ -412,16 +410,6 @@
     </div>
   </div>
 </footer>
-
-<!-- This is the background overlay -->
-<div id="captcha-modal" class="modal-overlay">
-    <!-- This is the actual pop-up box -->
-    <div class="modal-content">
-        <h3>Security Check</h3>
-        <p>Please verify you are human to continue.</p>
-        
-        <form id="contact-form">
-            <div class="g-recaptcha" data-sitekey="6LcbQc0sAAAAAKO4gYrvcT90hlN4DsldhUlKfrGy" data-callback="onCaptchaSuccess" data-expired-callback="onCaptchaExpired"></div>
             <button type="submit" class="submit-btn">Submit</button>
         </form>
     </div>
