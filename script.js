@@ -1,46 +1,18 @@
-// Stores the token when reCAPTCHA is completed
-var captchaToken = '';
-
-// Called automatically by reCAPTCHA when user ticks the box
-function onCaptchaSuccess(token) {
-    captchaToken = token;
-    var err = document.getElementById("captcha-error");
-    if (err) err.remove();
-}
-
-// Called if the reCAPTCHA token expires after ~2 minutes
-function onCaptchaExpired() {
-    captchaToken = '';
-}
-
 window.onload = function() {
-    const myForm = document.getElementById("contact-form");
-    const myModal = document.getElementById("captcha-modal");
+    const hamburger = document.getElementById('nav-hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
 
-    // Show the modal on page load
-    if (myModal) {
-        myModal.style.display = "flex";
-    }
+    if (hamburger && mobileNav) {
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('open');
+            mobileNav.classList.toggle('open');
+        });
 
-    if (myForm) {
-        myForm.addEventListener("submit", function(event) {
-            event.preventDefault();
-
-            if (captchaToken && captchaToken.length > 0) {
-                // User has verified — close the modal
-                myModal.style.display = "none";
-                captchaToken = '';
-            } else {
-                // Not verified — show inline error
-                var existing = document.getElementById("captcha-error");
-                if (!existing) {
-                    var err = document.createElement("p");
-                    err.id = "captcha-error";
-                    err.style.cssText = "color:#e74c3c;font-size:.85rem;margin-top:10px;";
-                    err.textContent = "Please check the 'I am not a robot' box first.";
-                    myForm.appendChild(err);
-                }
-            }
+        mobileNav.querySelectorAll('a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                hamburger.classList.remove('open');
+                mobileNav.classList.remove('open');
+            });
         });
     }
 };
